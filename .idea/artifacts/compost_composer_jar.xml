@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="compost-composer:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/compost_composer_jar</output-path>
+    <root id="archive" name="compost-composer.jar">
+      <element id="module-output" name="compost-composer" />
+      <element id="extracted-dir" path="C:/GSQ/Runescape/OSBot/osbot 2.4.144.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
