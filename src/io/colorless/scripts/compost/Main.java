@@ -8,22 +8,31 @@ import org.osbot.rs07.script.ScriptManifest;
 
 import java.awt.*;
 
-@ScriptManifest(name = "CompostComposerT7", author = "Colorless", version = 1.0, info = "", logo = "")
+@ScriptManifest(name = "Compost Composer", author = "Colorless", version = 1.0, info = "", logo = "")
 
 public class Main extends Script
 {
+
     private Conditionals conditionals = new Conditionals(this);
 
-    private CraftUC craftUC = new CraftUC(this);
-    private CraftSC craftSC = new CraftSC(this);
-    private DepositExceptVA depositExceptVA = new DepositExceptVA(this);
-    private DepositUC depositUC = new DepositUC(this);
-    private WithdrawSC withdrawSC = new WithdrawSC(this);
-    private WithdrawC withdrawC = new WithdrawC(this);
-    private WithdrawMaterialsUC withdrawMaterialsUC = new WithdrawMaterialsUC(this);
-    private WithdrawMaterialsSC withdrawMaterialsSC = new WithdrawMaterialsSC(this);
+    private CraftUC craftUC = new CraftUC(this, conditionals);
+    private CraftSC craftSC = new CraftSC(this, conditionals);
+    private DepositExceptVA depositExceptVA = new DepositExceptVA(this, conditionals);
+    private DepositUC depositUC = new DepositUC(this, conditionals);
+    private WithdrawSC withdrawSC = new WithdrawSC(this, conditionals);
+    private WithdrawC withdrawC = new WithdrawC(this, conditionals);
+    private WithdrawMaterialsUC withdrawMaterialsUC = new WithdrawMaterialsUC(this, conditionals);
+    private WithdrawMaterialsSC withdrawMaterialsSC = new WithdrawMaterialsSC(this, conditionals);
 
     private long ultraCompost;
+    private long startTime;
+
+    private String formatTime(final long ms)
+    {
+        long s = ms / 1000, m = s / 60, h = m / 60;
+        s %= 60; m %= 60; h %= 24;
+        return String.format("%02d:%02d:%02d", h, m, s);
+    }
 
 
 
@@ -185,6 +194,7 @@ public class Main extends Script
     public void onStart()
     {
         log("Starting script");
+        startTime = System.currentTimeMillis();
 
     }
 
@@ -260,8 +270,19 @@ public class Main extends Script
     @Override
     public void onPaint(Graphics2D g)
     {
+        final long runTime = System.currentTimeMillis() - startTime;
+        String time = formatTime(runTime);
+        g.drawString(time, 35, 300);
+        g.drawString("Current Ultracompost: " + ultraCompost, 35, 320);
 
-        //This is where you will put your code for paint(s)
+        // Get current mouse position
+        Point mP = getMouse().getPosition();
+
+        // Draw a line from top of screen (0), to bottom (500), with mouse x coordinate
+        g.drawLine(mP.x, 0, mP.x, 500);
+
+        // Draw a line from left of screen (0), to right (800), with mouse y coordinate
+        g.drawLine(0, mP.y, 800, mP.y);
 
     }
 }

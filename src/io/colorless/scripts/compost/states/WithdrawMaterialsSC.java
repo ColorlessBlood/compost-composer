@@ -7,12 +7,9 @@ public class WithdrawMaterialsSC
 {
     private Conditionals conditionals;
     private Script script;
-    public WithdrawMaterialsSC(Script script)
+    public WithdrawMaterialsSC(Script script, Conditionals conditionals)
     {
         this.script = script;
-    }
-    public WithdrawMaterialsSC(Conditionals conditionals)
-    {
         this.conditionals = conditionals;
     }
 
@@ -24,7 +21,18 @@ public class WithdrawMaterialsSC
         }
 
         script.getBank().withdraw("Compost potion(4)", 5);
-        script.getBank().withdraw("Compost", 20);
-        script.getBank().close();
+        script.log("Withdrawing Compost Potions");
+        if (conditionals.waitPotion.sleep())
+        {
+            script.log("Withdrawing Compost");
+            script.getBank().withdraw("Compost", 20);
+            if (conditionals.waitCompost.sleep())
+            {
+                script.log("Withdrrew Compost");
+                script.getBank().close();
+            }
+        }
+
+
     }
 }

@@ -7,12 +7,9 @@ public class DepositUC
 {
     private Conditionals conditionals;
     private Script script;
-    public DepositUC(Script script)
+    public DepositUC(Script script, Conditionals conditionals)
     {
         this.script = script;
-    }
-    public DepositUC(Conditionals conditionals)
-    {
         this.conditionals = conditionals;
     }
 

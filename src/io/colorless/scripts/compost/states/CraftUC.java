@@ -7,39 +7,45 @@ public class CraftUC
 {
     private Conditionals conditionals;
     private Script script;
-    public CraftUC(Script script)
+
+    public CraftUC(Script script, Conditionals conditionals)
     {
         this.script = script;
-    }
-
-    public CraftUC(Conditionals conditionals)
-    {
         this.conditionals = conditionals;
     }
 
     public void craft()
     {
         script.log("Attempting to craft Ultracompost");
-        script.getInventory().interact("Use", "Volcanic ash", "Supercompost");
+        script.getInventory().interact("Use", "Volcanic ash");
 
-        if (conditionals.waitMake.sleep())
+        if (conditionals.waitSelected.sleep())
         {
-            script.getWidgets().interact(309, 2, "Make All");
+            script.getInventory().interact("Use", "Supercompost");
 
-            if (conditionals.waitAll.sleep())
+            if (conditionals.waitMake.sleep())
             {
-                script.log("Making Ultracompost Complete!");
+                script.getWidgets().interact(309, 2, "Make All");
+
+                if (conditionals.waitAll.sleep())
+                {
+                    script.log("Making Ultracompost Complete!");
+                }
+                else
+                {
+                    script.log("Making Ultracompost failed!");
+                }
+
             }
+
             else
             {
-                script.log("Making Ultracompost failed!");
+                script.log("Interface didn't appear!");
             }
+        }
 
-        }
-        else
-        {
-            script.log("Interface didn't appear!");
-        }
+
+
 
 
     }

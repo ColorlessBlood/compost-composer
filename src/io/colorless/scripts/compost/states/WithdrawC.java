@@ -7,12 +7,9 @@ public class WithdrawC
 {
     private Conditionals conditionals;
     private Script script;
-    public WithdrawC(Script script)
+    public WithdrawC(Script script, Conditionals conditionals)
     {
         this.script = script;
-    }
-    public WithdrawC(Conditionals conditionals)
-    {
         this.conditionals = conditionals;
     }
 

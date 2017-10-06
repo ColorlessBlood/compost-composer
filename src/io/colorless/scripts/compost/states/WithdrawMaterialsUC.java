@@ -7,15 +7,11 @@ public class WithdrawMaterialsUC
 {
     private Conditionals conditionals;
     private Script script;
-    public WithdrawMaterialsUC(Script script)
+    public WithdrawMaterialsUC(Script script, Conditionals conditionals)
     {
         this.script = script;
-    }
-    public WithdrawMaterialsUC(Conditionals conditionals)
-    {
         this.conditionals = conditionals;
     }
-
     public void withdrawMaterials()
     {
         if (!script.getInventory().isEmpty())

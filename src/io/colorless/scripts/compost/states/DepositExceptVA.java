@@ -7,12 +7,9 @@ public class DepositExceptVA
 {
     private Conditionals conditionals;
     private Script script;
-    public DepositExceptVA(Script script)
+    public DepositExceptVA(Script script, Conditionals conditionals)
     {
         this.script = script;
-    }
-    public DepositExceptVA(Conditionals conditionals)
-    {
         this.conditionals = conditionals;
     }
 

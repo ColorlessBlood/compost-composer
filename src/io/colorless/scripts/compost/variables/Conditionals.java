@@ -1,20 +1,10 @@
 package io.colorless.scripts.compost.variables;
 
-import io.colorless.scripts.compost.states.*;
 import org.osbot.rs07.script.Script;
 import org.osbot.rs07.utility.ConditionalSleep;
 
 public class Conditionals
 {
-
-    private CraftSC craftSC1 = new CraftSC(this);
-    private CraftUC craftUC1 = new CraftUC(this);
-    private DepositExceptVA depositExceptVA1 = new DepositExceptVA(this);
-    private DepositUC depositUC1 = new DepositUC(this);
-    private WithdrawC withdrawC1 = new WithdrawC(this);
-    private WithdrawMaterialsSC withdrawMaterialsSC1 = new WithdrawMaterialsSC(this);
-    private WithdrawMaterialsUC withdrawMaterialsUC1 = new WithdrawMaterialsUC(this);
-    private WithdrawSC withdrawSC1 = new WithdrawSC(this);
 
     private Script script;
     public Conditionals(Script script)
@@ -78,6 +68,24 @@ public class Conditionals
         public boolean condition() throws InterruptedException
         {
             return script.getInventory().isItemSelected();
+        }
+    };
+
+    public ConditionalSleep waitPotion = new ConditionalSleep(2500)
+    {
+        @Override
+        public boolean condition() throws InterruptedException
+        {
+            return script.getInventory().contains("Compost potion(4)");
+        }
+    };
+
+    public ConditionalSleep waitCompost = new ConditionalSleep(2500)
+    {
+        @Override
+        public boolean condition() throws InterruptedException
+        {
+            return script.getInventory().contains("Compost");
         }
     };
 

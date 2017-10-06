@@ -10,13 +10,9 @@ public class CraftSC
 {
     private Conditionals conditionals;
     private Script script;
-    public CraftSC(Script script)
+    public CraftSC(Script script, Conditionals conditionals)
     {
         this.script = script;
-    }
-
-    public CraftSC(Conditionals conditionals)
-    {
         this.conditionals = conditionals;
     }
 
