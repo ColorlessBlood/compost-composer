@@ -25,7 +25,7 @@ public class CraftUC
 
             if (conditionals.waitMake.sleep())
             {
-                script.getWidgets().interact(309, 2, "Make All");
+                script.getWidgets().interact(270, 14, 38, "Make");
 
                 if (conditionals.waitAll.sleep())
                 {

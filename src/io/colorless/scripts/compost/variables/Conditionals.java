@@ -29,7 +29,7 @@ public class Conditionals
         @Override
         public boolean condition() throws InterruptedException
         {
-            return script.getWidgets().isVisible(309, 2);
+            return script.getWidgets().isVisible(270, 14, 38);
         }
     };
 
